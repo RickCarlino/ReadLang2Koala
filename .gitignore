@@ -1,0 +1,7 @@
+node_modules/
+input.txt
+.env*
+*.txt
+*.tsv
+key.json
+mp3/
