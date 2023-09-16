@@ -17,7 +17,7 @@ The sentences needed to be EXTREMELY short.
 
 async function go(lines: string[]) {
   const prompt = lines.join("\n") + "\n" + "===" + PROMPT;
-  const result = await ask(prompt);
+  const result = await ask(prompt, { temperature: 0.65 });
   console.log(result.join("\n") || "No output");
 }
 
