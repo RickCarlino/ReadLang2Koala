@@ -70,22 +70,28 @@ export const say = async (
     pause(4000),
   ]);
   if (!existsSync(p)) {
-    const [response] = await CLIENT.synthesizeSpeech({
-      input: { ssml: txt },
-      voice: {
-        languageCode: "ko-KR",
-        name: voice,
-      },
-      audioConfig: {
-        audioEncoding: "MP3",
-      },
-    });
-
-    if (!response.audioContent) {
-      throw new Error("No audio content");
+    try {
+      const [response] = await CLIENT.synthesizeSpeech({
+        input: { ssml: txt },
+        voice: {
+          languageCode: "ko-KR",
+          name: voice,
+        },
+        audioConfig: {
+          audioEncoding: "MP3",
+        },
+      });
+  
+      if (!response.audioContent) {
+        throw new Error("No audio content");
+      }
+      const writeFile = util.promisify(fs.writeFile);
+      await writeFile(p, response.audioContent, "binary");
+        
+    } catch (error) {
+      console.error(error);
+      return p;
     }
-    const writeFile = util.promisify(fs.writeFile);
-    await writeFile(p, response.audioContent, "binary");
   }
   return p;
 };
