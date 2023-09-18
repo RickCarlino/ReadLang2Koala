@@ -15,7 +15,7 @@ DO NOT RETURN ANYTHING EXCEPT TAB SEPARATED VALUES.
 
 async function go(lines: string[]) {
   const prompt = lines.join("\n") + "\n" + "===" + PROMPT;
-  const result = await ask(prompt, { temperature: 0.65 });
+  const result = await ask(prompt, { temperature: 0.33 });
   console.log(result.join("\n") || "No output");
 }
 
