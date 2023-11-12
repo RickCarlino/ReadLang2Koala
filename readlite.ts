@@ -38,7 +38,7 @@ in the output.
 */
 import * as readline from 'readline';
 
-const CONTEXT_LEN = 28;
+const CONTEXT_LEN = 8;
 
 const rl = readline.createInterface({
   input: process.stdin,
